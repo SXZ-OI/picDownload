@@ -5,12 +5,16 @@ Download pictures from zykj
 ## 如何使用
 
 本代码的必要环境为nodejs
-Windows运行代码如下：
+
+运行代码如下：
 
 ```
-start http://localhost:3939
 node index.js
 ```
+
+本脚本默认监听端口为 $3939$
+
+请使用 <localhost:3939> 访问
 
 其余请自行探索
 
