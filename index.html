@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>云笔记小助手</title>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="./resources/favicon.gif">
+    <script src="./resources/jquery.min.js"></script>
+    <script src="./resources/bootstrap.bundle.min.js"></script>
+    <link id=theme rel="stylesheet" href="./resources/bootstrap.min.css">
+    <link rel="stylesheet" href="./resources/APlayer.min.css">
+    <script src="./resources/APlayer.min.js"></script>
+    <script src="./resources/Meting.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <div class="hub">
+                    <span>Sxz</span> <span>Nav</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"> Home <span class="visually-hidden">(current)</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a target="_blank" class="nav-link" href="https://sxz-oi.github.io/"> SXZ++ <span class="visually-hidden">(current)</span> </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Blogs</a>
+                        <div class="dropdown-menu">
+                            <a target="_blank" class="dropdown-item" href="https://cnblogs.com/luoyj506">LitLuo</a>
+                            <a target="_blank" class="dropdown-item" href="https://kuzusy.github.io">LoliconMe</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <form class="d-flex" action="http://www5.baidu.com/s" method=get id=searcher>
+                <div class="input-group">
+                    <input class="form-control me-sm-2" type="text" placeholder="百度一下" name=wd id=searchKeys>
+                    <button class="btn btn-secondary my-2 my-sm-0 input-group-text" type="submit" aria-haspopup="true" id=searchE>百度</button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" style="min-width: 3rem;">
+                        <li>
+                            <a class="dropdown-item" data-url="http://www5.baidu.com/s" data-var="wd" data-text="百度一下(快照真好用)"><img src=https://unpkg.com/simple-icons@v7/icons/baidu.svg width="21" height="21">百度</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" data-url="http://sogo.com/web" data-var="query" data-text="搜个寄吧"><img src=https://unpkg.com/simple-icons@v7/icons/sogou.svg width="21" height="21">搜狗</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" data-url="https://bing.com" data-var="q" data-text="无广告，百度能学学?"><img src=https://unpkg.com/simple-icons@v7/icons/microsoftbing.svg width="21" height="21">必应</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <br><br><br>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#list">Download</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#links">Links</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#Update">Update</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active show" id="login">
+            <div class="container">
+                <br>
+                <h1 id="welc"></h1>
+                <form>
+                    <div class="mb-3">
+                        <label for="account" class="form-label">账号</label>
+                        <input type="text" class="form-control" id="account">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">密码</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="login_in">登录</button>
+                </form>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="list">
+            <div class="container">
+                <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 100%;">
+                    <a class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                        <img src="/resources/download.svg" width="30" height="24">
+                        <use xlink:href="#bootstrap">
+                            <span class="fs-5 fw-semibold">Note List（点击下载）</span>
+                    </a>
+                    <div id="noteList" class="list-group list-group-flush border-bottom scrollarea">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="links">
+            <div class="container">
+                <h1>广告招租</h1>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="Update">
+            <div class="container">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 21%;"></div>
+                </div>
+                <h1 class="text-primary">Update Log</h1>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Version 1.0.X </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body text-muted">
+                                <h3 class="text-primary">V1.0.0 <small>2022.06.01</small></h3>
+                                <ul>
+                                    <li>新网站哟</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" disabled> Disabled </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <!-- text -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" disabled> Disabled </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <!-- text -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="dropdown2">
+            <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park
+                Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+        </div>
+    </div>
+
+    <script>
+        if (localStorage.getItem("token")) {
+            welc.innerHTML = "你好！" + localStorage.getItem("realName");
+            login_in.innerHTML = "重新登录";
+            getAll();
+        }
+        login_in.onclick = () => {
+            var x = new XMLHttpRequest(),
+                res;
+            x.open("POST", location.origin + "/login", true);
+            x.setRequestHeader("Content-Type", "application/json");
+            x.send(JSON.stringify({
+                "password": password.value,
+                "account": account.value
+            }));
+            x.onreadystatechange = () => {
+                if (x.readyState == 4)
+                    if (x.status == 200) {
+                        res = JSON.parse(x.response),
+                            welc.innerHTML = "你好！" + res.realName;
+                        for (var i in res)
+                            localStorage.setItem(i, res[i]);
+                        getAll();
+                    } else welc.innerHTML = x.response;
+            };
+        }
+
+        function getAll() {
+            var x = new XMLHttpRequest();
+            x.open("POST", "http://localhost:3939/getAll");
+            x.setRequestHeader("Content-Type", "application/json");
+            x.send(`{"token":"${localStorage.getItem("token")}"}`);
+            x.onreadystatechange = () => {
+                if (x.readyState == 4) {
+                    setTimeout(() => {
+                        if (x.status != 200) return;
+                        noteList.innerHTML = "";
+                        var lis = JSON.parse(x.response).noteList;
+                        lis = shellsort(lis);
+                        for (var i in lis) {
+                            if (lis[i].type != 1) continue;
+                            var template = `<div class="list-group list-group-flush border-bottom scrollarea">
+                            <a onclick="noteDownload('${lis[i].fileId}','${lis[i].fileName}')" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+                                <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <strong class="mb-1">${lis[i].fileName}</strong>
+                                    <small>${lis[i].updateTime}</small>
+                                    </div>
+                                    <div class="col-10 mb-1 small">${lis[i].fileId}</div>
+                                    </a>
+                                    </div>`
+                            $("#noteList").append(template);
+                        }
+                    })
+                }
+            };
+        }
+
+        function noteDownload(fileId, name) {
+            var x = new XMLHttpRequest();
+            x.open("GET", `http://localhost:3939/download?fileId=${fileId}&name=${name}&token=${localStorage.getItem("token")}`, 1);
+            x.responseType = "blob";
+            x.setRequestHeader("Content-Type", "application/json");
+            x.send();
+            x.onreadystatechange = () => {
+                if (x.readyState == 4) {
+                    p = document.createElement('a');
+                    p.href = window.URL.createObjectURL(x.response);
+                    p.download = name + '.zip';
+                    p.click();
+                }
+            };
+        }
+
+        function shellsort(data) {
+            var len = data.length,
+                gap, i, j, temp;
+            for (gap = Math.floor(len / 2); gap > 0; gap = Math.floor(gap / 2))
+                for (i = gap; i < len; i++)
+                    for (j = i - gap; j >= 0 && data[j].updateTime < data[j + gap].updateTime; j -= gap)
+                        temp = data[j], data[j] = data[j + gap], data[j + gap] = temp;
+            return data;
+        }
+    </script>
+
+    <script>
+        $("form .dropdown-item").click(function() {
+            $(searchE).text($(this).text()), searcher.action = $(this).data("url"), searchKeys.placeholder = $(this).data("text"), searchKeys.name = $(this).data("var")
+        })
+    </script>
+
+    <style>
+        .hub {
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+        
+        .hub span:nth-child(2) {
+            background: #FF9900;
+            color: #000000;
+            border-radius: 1vw;
+            padding: 3% 7%;
+            display: inline-block;
+        }
+        
+        small:hover {
+            cursor: pointer;
+        }
+    </style>
+
+    <meting-js id="7060756915" lrc-type="0" server="netease" order="random" type="playlist" fixed="true" list-olded="true">
+    </meting-js>
+</body>
+
+</html>
